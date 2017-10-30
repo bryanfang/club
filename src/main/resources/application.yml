@@ -1,0 +1,45 @@
+ 
+---
+# Specific for production environment
+spring:
+  profiles: cloud
+  datasource:
+    jndi-name: java:comp/env/jdbc/DefaultDB
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+---
+# Specific for local environment
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:h2:mem:club
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    database: H2
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /h2-console/club
+security:
+  basic:
+    enabled: false
+
+#Configuration parameters for WeChat
+wechat: 
+  appId: wxebb3ad7719c1fc09
+  appSecret: 81a86cda5068f1d34865d20c841092b3
+  
+---
+spring:
+  profiles:
+    active:
+    - local
